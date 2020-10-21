@@ -53,14 +53,6 @@ const SearchOffice = () => {
 
   return (
     <Navigation>
-      <Head>
-        <link rel="stylesheet" href="/css/style.css" />
-        <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-        <link rel="stylesheet" href="/assets/css/fontawesome.css" />
-        <link rel="stylesheet" href="/assets/css/templatemo-style.css" />
-        <link rel="stylesheet" href="/assets/css/owl.css" />
-        <link rel="stylesheet" href="/css/local/SearchOffice.css" />
-      </Head>
       <div className="is-preload">
         <div id="wrapper">
           <div id="main"></div>

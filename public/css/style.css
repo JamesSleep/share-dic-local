@@ -2045,6 +2045,11 @@ select.form-control-lg:not([size]):not([multiple]), .input-group-lg > select.for
     cursor: pointer; }
   .btn:not(:disabled):not(.disabled):active, .btn:not(:disabled):not(.disabled).active {
     background-image: none; }
+@media (max-width: 1024px) {
+  .btngreen .Btn {
+    width: 80%;
+  }
+}
 
 a.btn.disabled,
 fieldset:disabled a.btn {
@@ -9170,10 +9175,22 @@ textarea.form-control {
 .question .button a{color:#fff;}
 .question .add{margin-top:1%;}
 .question .wid10{width:10%;}
-.question .wid20{width:20%;}
+.question .wid20{
+  width:20%;
+}
+@media (max-width: 1024px) {
+  .question .wid20 {
+    width: 60%;
+  }
+}
 .question .wid30{width:30%;}
 .question .wid53{width:49%;}
 .question .wid53_box{width:49%; height: 100px;}
+@media (max-width: 1024px) {
+  .question .wid53_box {
+    width: 100%;
+  }
+}
 
 .btngreen{margin-top:30px;}
 .btngreen a{width: 15%;
@@ -9781,3 +9798,4 @@ font-weight: normal;
 border-radius: 2px;
 }
 .body_box{max-width:1200px;width:100%;margin:0 auto;}
+

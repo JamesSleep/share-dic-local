@@ -4,7 +4,6 @@ import { useState, useEffect } from 'react';
 import { postData } from '../api';
 
 export default function Home() {
-  const aa = [0,0,0,0];
   const [newOfficeList, setNewOfficeList] = useState([]);
   
   useEffect(() => {

@@ -5,21 +5,21 @@ import { useRouter } from 'next/router'
 import { postData } from "../../api";
 import HeadSub from "./HeadSub";
 
-const Navigation = ({ children }) => {
+const Navigation = ({ children, loginCheck }) => {
   const router = useRouter();
   const [isLogin, setIsLogin] = useState(false);
   const ck_login = async () =>{
-    if(props.loginCheck == "on"){
-        const form = new FormData();
-        form.append("method", "proc_member_get_one");
-        form.append("mb_token", localStorage.token);
-        // JSON 데이터 저장
-        const {data:{result}} = await postData(form);
-        console.log(result);
-        if(result == "N"){
-            alert("로그인정보가 만료되었습니다.");
-            router.push("/");
-        }
+    if(loginCheck == "on"){
+      const form = new FormData();
+      form.append("method", "proc_member_get_one");
+      form.append("mb_token", localStorage.token);
+      // JSON 데이터 저장
+      const {data:{result}} = await postData(form);
+      console.log(result);
+      if(result == "N"){
+          alert("로그인정보가 만료되었습니다.");
+          router.push("/");
+      }
     }
   }
   useEffect(() => {

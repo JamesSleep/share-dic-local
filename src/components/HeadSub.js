@@ -19,6 +19,9 @@ const HeadSub = (props) => (
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="/css/open-iconic-bootstrap.min.css" />
     <link rel="stylesheet" href="/css/animate.css" />
+    <link rel="stylesheet" href="/assets/css/fontawesome.css" />
+    <link rel="stylesheet" href="/assets/css/templatemo-style.css" />
+    <link rel="stylesheet" href="/assets/css/owl.css" />
     <link rel="stylesheet" href="/css/owl.carousel.min.css" />
     <link rel="stylesheet" href="/css/owl.theme.default.min.css" />
     <link rel="stylesheet" href="/css/magnific-popup.css" />
@@ -30,6 +33,9 @@ const HeadSub = (props) => (
     <link rel="stylesheet" href="/css/icomoon.css" />
     <link rel="stylesheet" href="/css/style.css" />
     <link rel="stylesheet" href="/css/local/navigation.css" />
+    <link rel="stylesheet" href="/css/local/Notice.css" />
+    <link rel="stylesheet" href="/css/local/NewOfficeList.css" />
+    <link rel="stylesheet" href="/css/local/SearchOffice.css" />
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
     <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.7.js"></script>
   </Head>
