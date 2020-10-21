@@ -1,0 +1,63 @@
+.office__row {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.new__office {
+  width: 25%;
+  height: 600px;
+  display: block;
+  margin: 0px 20px;
+}
+
+.office__image {
+  width: 100%;
+  height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.office__image img {
+  object-fit: cover;
+  width: 100%;
+  height: 300px;
+}
+
+.office__info {
+  font-weight: 600;
+  font-size: 15px;
+  color: white;
+  background-color: black;
+  text-align: center;
+}
+
+.office__info2 {
+  border: 1px solid #e6e6e6;
+  padding: 5px 10px;
+}
+
+.office__info2 .fee {
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.office__info2 .hash-tag {
+  font-size: 14px;
+}
+
+@media ( max-width: 1024px ) {
+  .office__row {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .new__office {
+    width: 100%;
+    margin: 0px 20px;
+  }
+}

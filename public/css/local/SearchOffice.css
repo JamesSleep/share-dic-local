@@ -1,0 +1,23 @@
+.sidebar_cls {
+  position: relative;
+}
+
+.search_box {
+  display: inline-block;
+  float: right;
+  margin-top: 5px;
+}
+
+.sh_psel {
+  width:100px;
+  display:inline-block;
+  margin-left: 16px;
+}
+
+.p_in_text {
+  color:#fff;
+}
+
+.p_title_text {
+  font-weight: 500;
+}
