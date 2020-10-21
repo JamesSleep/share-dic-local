@@ -3,6 +3,7 @@ import Link from "next/link";
 import Head from 'next/head';
 import { useRouter } from 'next/router'
 import { postData } from "../../api";
+import HeadSub from "./HeadSub";
 
 const Navigation = ({ children }) => {
   const router = useRouter();
@@ -45,25 +46,7 @@ const Navigation = ({ children }) => {
     
   return (
     <>
-      <Head>
-        <title>쉐어딕</title>
-        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet" />
-        <link rel="stylesheet" href="/css/open-iconic-bootstrap.min.css" />
-        <link rel="stylesheet" href="/css/animate.css" />
-        <link rel="stylesheet" href="/css/owl.carousel.min.css" />
-        <link rel="stylesheet" href="/css/owl.theme.default.min.css" />
-        <link rel="stylesheet" href="/css/magnific-popup.css" />
-        <link rel="stylesheet" href="/css/aos.css" />
-        <link rel="stylesheet" href="/css/ionicons.min.css" />
-        <link rel="stylesheet" href="/css/bootstrap-datepicker.css" />
-        <link rel="stylesheet" href="/css/jquery.timepicker.css" />
-        <link rel="stylesheet" href="/css/flaticon.css" />
-        <link rel="stylesheet" href="/css/icomoon.css" />
-        <link rel="stylesheet" href="/css/style.css" />
-        <link rel="stylesheet" href="/css/local/navigation.css" />
-        <link rel="stylesheet" href="/css/local/NewOfficeList.css" />
-        <link rel="stylesheet" href="/css/local/Notice.css" />
-      </Head>
+      <HeadSub />
       <nav className="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
         <div className="container">
           <a className="navbar-brand" href="/"><img src="/images/logo.png" alt="쉐어딕" /></a>
