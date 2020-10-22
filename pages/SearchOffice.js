@@ -1,16 +1,45 @@
+/*global kakao*/
+
 import React, { useEffect, useState } from "react";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import { postData } from "../api";
 import Navigation from "../src/components/Navigation";
+import { BsFillFunnelFill } from "react-icons/bs";
+import OfficeCard from "../src/components/OfficeCard";
+import SearchFilter from "../src/components/SearchFilter";
+import Map from "../src/components/Map";
+
+const system = {
+  "001": "1일",
+  "002": "월세",
+  "003": "프리패스",
+}
 
 const SearchOffice = () => {
   const Router = useRouter();
   const [officeList, setOfficeList] = useState([]);
+  const [isClick, setIsClick] = useState(false);
+  const [isFilter, setIsFilter] = useState(false);
+  const [filter, setFilter] = useState({
+    system: "전체",
+    order: "최근 등록순",
+    deposit: [0, 100],
+    monthly: [0, 100],
+    count: [0, 100],
+    option: [],
+  });
 
   useEffect(() => {
     getList();
   }, []);
+
+  const handleChange = (property, newValue) => {
+    setFilter({
+      ...filter,
+      [property]: newValue
+    });
+  };
 
   const getList = async () => {
     const form = new FormData();
@@ -27,23 +56,8 @@ const SearchOffice = () => {
     form.append("page", "1");
 
     const { data: list } = await postData(form);
-    //console.log(list);
+    console.log(list);
     setOfficeList(list);
-  }
-
-  const translationTag = (text="") => {
-    const textArray = text.split("#");
-    const len = textArray.length; 
-    let result = "";
-
-    for (let i=0; i<len; i++) {
-      if (textArray[i + 1] === "" || i === len -2) {
-        result += textArray[i];
-        break;
-      }
-      result += textArray[i] + ',';
-    }
-    return result;
   }
 
   const pageHandler = (event, id) => {
@@ -53,101 +67,61 @@ const SearchOffice = () => {
 
   return (
     <Navigation>
-      <div className="is-preload">
-        <div id="wrapper">
-          <div id="main"></div>
-          <div id="sidebar" className="sidebar_cls">
-            <div className="search_wrap">
-              <div className="sch-bar">
-                <div className="wrap">
-                  <input type="text" name="t_search" id="t_search" className="clearable" placeholder="건물명, 주소, 지하철역 입력" />
-                  <button type="button" id="search.keyword.submit" className="go btn_search">검색</button>
-                </div>
+      <div className="main__container">
+        <div className="office__list">
+          <div className="search__wrap">
+            <input type="text" placeholder="건물명, 주소, 지하철역 입력" />
+            <button onClick={event=>setIsClick(true)}>검색</button>
+          </div>
+          <div className="list__wrap">
+            <div className="list__header">
+              <div className="search__info">
+                { isClick && (
+                  `[서울/강남역] 주변 매물 총 ${officeList.length}`
+                )}
+              </div>
+              <div>
+                <span className="filter" onClick={()=>setIsFilter(!isFilter)}>
+                  <BsFillFunnelFill size="23px" />
+                </span>
+                <select 
+                  value={filter.system} 
+                  onChange={event=>setFilter({...filter, system: event.target.value})}
+                >
+                  <option value="전체">전체</option>
+                  <option value="월세">월세</option>
+                  <option value="1일">1일</option>
+                  <option value="프리패스">프리패스</option>
+                </select>
+                <select
+                  value={filter.order} 
+                  onChange={event=>setFilter({...filter, order: event.target.value})}
+                >
+                  <option value="최근 등록순">최근 등록순</option>
+                  <option value="높은 가격순">높은 가격순</option>
+                  <option value="낮은 가격순">낮은 가격순</option>
+                </select>
               </div>
             </div>
-            <div className="card-ui-box">
-              <div id="info_search.place" className="search_place">
-                <div className="search_title">
-                  <h className="place_tit">[서울/강남역] 주변 매물 총 </h>
-                  <span className="cutwrap">
-                    <h id="info.search_place.cnt" className="cnt">20</h>
-                  </span>
-                  <div className="search_place_sel_box search_box">
-                    <select name="search_place_sel" className="sel sh_psel">
-                      <option value="">구분 선택</option>
-                      <option value="12">입주</option>
-                      <option value="6">이슈</option>
-                      <option value="9">건물소식</option>
-                      <option value="10">프로모션</option>
-                      <option value="11">리테일</option>
-                      <option value="13">임대정보</option>
-                      <option value="14">매매정보</option>
-                      <option value="99">기타</option>
-                    </select>
-                    <select name="search_place_sel" className="sel sh_psel">
-                      <option value="">구분 선택</option>
-                      <option value="12">입주</option>
-                      <option value="6">이슈</option>
-                      <option value="9">건물소식</option>
-                      <option value="10">프로모션</option>
-                      <option value="11">리테일</option>
-                      <option value="13">임대정보</option>
-                      <option value="14">매매정보</option>
-                      <option value="99">기타</option>
-                    </select>
-                  </div>
-                </div>
-                <div className="search_place_list_wrap">
-                  <div className="search_place_list">
-                    <ul>
-                      <div>
-                        {
-                          officeList.map(office => (
-                            <li key={office.of_idx} className="search_place_click">
-                              <a href="#" onClick={event=>pageHandler(event, office.of_idx)}>
-                                <div className= "img_area">
-                                  <img src={`https://softer052.cafe24.com/data/img/${office.of_img}`} />
-                                  { office.of_system === "003" & (
-                                    <div className="tag_text">
-                                      <span className="premium">프리패스</span>
-                                    </div>
-                                  )}
-                                </div>
-                                <div className="search_place_into">
-                                  <span className="place_into_text p_in_text">
-                                    2인 좌석 수용인원 {office.of_member_all}명
-                                  </span>
-                                </div>
-                                <div className="search_place_title">
-                                  <span className="place_title_text p_title_text">
-                                    월세 {`${office.of_deposit}/${office.of_monthly}`}
-                                  </span>
-                                </div>
-                                <div className="search_place_Contents">
-                                  <span className="place_Contents_text">
-                                    {translationTag(office.of_keyword)}<br/>
-                                    {translationTag(office.of_option)}
-                                  </span>
-                                </div>
-                              </a>
-                            </li>
-                          ))
-                        }
-                      </div>
-                    </ul>
-                  </div>
-                </div>
+            <div className="list__container">
+              { isFilter && (
+                <SearchFilter 
+                  filter={filter}
+                  setFilter={setFilter}
+                  handleChange={handleChange}
+                />
+              )}
+              <div className="list">
+                { officeList.map((office, index) => (
+                  <OfficeCard key={index} office={office} />
+                ))}
               </div>
             </div>
           </div>
         </div>
-        <script src="vendor/jquery/jquery.min.js"></script>
-        <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-        <script src="assets/js/browser.min.js"></script>
-        <script src="assets/js/breakpoints.min.js"></script>
-        <script src="assets/js/transition.js"></script>
-        <script src="assets/js/owl-carousel.js"></script>
-        <script src="assets/js/custom.js"></script>
+        <div className={`map__container ${isFilter&&"reacted__map"}`} id="kakao_map">
+          <Map />
+        </div>
       </div>
     </Navigation>
   )

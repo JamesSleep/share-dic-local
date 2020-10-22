@@ -2,6 +2,7 @@ import Head from 'next/head';
 import Navigation from '../src/components/Navigation';
 import { useState, useEffect } from 'react';
 import { postData } from '../api';
+import OfficeCard from '../src/components/OfficeCard';
 
 export default function Home() {
   const [newOfficeList, setNewOfficeList] = useState([]);
@@ -55,24 +56,7 @@ export default function Home() {
           </div>
           <div className="office__row">
             { newOfficeList.map((office, index) => (
-              <div key={index} className="new__office">
-                <div className="office__image">
-                  <img src={`https://softer052.cafe24.com/data/img/${office.of_img}`} />
-                </div>
-                <div className="office__info">
-                  2인 좌석 수용인원 {office.of_member_all}명
-                </div>
-                <div className="office__info2">
-                  <div className="fee">
-                    월세 {office.of_deposit}/{office.of_monthly}
-                  </div>
-                  <div className="hash-tag">
-                    {office.of_address.substring(0, 6)} <br />
-                    {office.of_keyword}
-                    {office.of_option}
-                  </div>
-                </div>
-              </div>
+              <OfficeCard office={office} />
             ))}
 
           </div>
