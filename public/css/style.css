@@ -10297,6 +10297,10 @@ border-radius: 2px;
     flex-direction: column;
   }
 
+  .main__container button {
+    height: 3vh;
+  }
+
   .map__container {
     width: 100%;
   }
@@ -10386,5 +10390,9 @@ border-radius: 2px;
     justify-content: flex-start;
     align-items: center;
     overflow: scroll;
+  }
+
+  .filter__wrap {
+    width: 100%;
   }
 }
