@@ -1,9 +1,16 @@
 import React, { useState } from "react";
 import Router, { useRouter } from "next/router";
 import { postData } from "../api";
+import Navigation from "../src/components/Navigation";
+import SignUpPresenter1 from "../src/components/SignUp/SignUpPresenter1";
+import SignUpPresenter2 from "../src/components/SignUp/SignUpPresenter2";
 
 const SignUp = () => {
   const router = useRouter();
+  const [page, setPage] = useState(0);
+  const [check, setCheck] = useState({
+    "0": false, "1": false
+  });
   const [signUpData, setSignUpData] = useState({
     email: "",
     password1: "",
@@ -12,12 +19,32 @@ const SignUp = () => {
     phone: "",
   });
 
-  const setState = (property, event) => {
+  const checkboxHandler = (event) => {
+    setCheck({
+      ...check,
+      [event.target.value]: event.target.checked
+    });
+  }
+
+  const signUpUpdate = (property, event) => {
     setSignUpData({
       ...signUpData,
       [property]: event.target.value
     });
   };
+
+  const nextStep = () => {
+    if (page === 0) {
+      if (check[0] && check[1]) {
+        setPage(1);
+      } else {
+        alert("회원가입약관의 내용에 동의하셔야 회원가입 하실 수 있습니다.");
+      }
+    } 
+    if (page === 1) {
+      post();
+    }
+  }
 
   const post = async () => {
     console.log(signUpData);
@@ -35,26 +62,29 @@ const SignUp = () => {
       router.push("/");
     } else {
       console.log("error:",message);
-      for (let key of form.keys()) {
-        console.log("key:", key);
-      }
-      for (let value of form.values()) {
-        console.log("key:", value);
-      }
+      alert(message);
     }
   };
 
   return (
-    <div>
-      <h2>회원가입</h2>
-      <a href="/">홈</a><a href="/Login">로그인</a>
-      <input type="text" placeholder="email" onChange={event=>setState("email", event)} />
-      <input type="text" placeholder="password" onChange={event=>setState("password1", event)} />
-      <input type="text" placeholder="password check" onChange={event=>setState("password2", event)} />
-      <input type="text" placeholder="name" onChange={event=>setState("name", event)} />
-      <input type="text" placeholder="phone" onChange={event=>setState("phone", event)} />
-      <input type="submit" value="회원가입" onClick={()=>post()}/>
-    </div>
+    <Navigation>
+      <div id="wrapper">
+        { page === 0 && (
+          <SignUpPresenter1 
+            check={check}
+            setCheck={setCheck}
+            checkboxHandler={checkboxHandler}
+            nextStep={nextStep}
+          />
+        )}
+        { page === 1 && (
+          <SignUpPresenter2 
+            signUpUpdate={signUpUpdate}
+            nextStep={nextStep}
+          /> 
+        )}
+      </div>
+    </Navigation>
   )
 }
 

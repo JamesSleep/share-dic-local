@@ -9523,6 +9523,8 @@ textarea.form-control {
     stroke-dasharray: 89, 200;
     stroke-dashoffset: -136px; } }
 
+/* OfficeDetail.js */
+
 .office_session_info{
   padding-top: 20px;
   padding-bottom: 20px;
@@ -9797,7 +9799,13 @@ font-size: 12px;
 font-weight: normal;
 border-radius: 2px;
 }
+
+/* OfficeDetail.js End */
+
 .body_box{max-width:1200px;width:100%;margin:0 auto;}
+
+
+/* index.js */
 
 .backimg {
   background-image: url("/images/bg_1.jpg");
@@ -9974,6 +9982,11 @@ border-radius: 2px;
   }
 }
 
+/* index.js End */
+
+
+/* RegistOffice.js */
+
 .hr_wrap {
   background-image: url('/images/sub02_bg.jpg'); 
   height: 500px;
@@ -10048,6 +10061,11 @@ border-radius: 2px;
   border: 1px solid #777;
 } */
 
+/* RegistOffice.js End */
+
+
+/* SearchOffice.js  */
+
 .main__container {
   width: 100%;
   height: 850px;
@@ -10080,7 +10098,11 @@ border-radius: 2px;
 }
 
 .search__wrap button {
+  width: 80px;
   height: 50px;
+  border: none;
+  background-color: #5e5e5e;
+  color: white;
 }
 
 .list__header {
@@ -10182,6 +10204,11 @@ border-radius: 2px;
   border-bottom: 1px solid #636e72;
 }
 
+.select__system button {
+  font-size: 14px;
+  height: 40px;
+}
+
 .filter__title {
   font-size: 15px;
   font-weight: 500;
@@ -10192,14 +10219,12 @@ border-radius: 2px;
 
 .system__wrap {
   width: 100%;
-  border-radius: 10px;
   overflow: hidden;
-  border: 1px solid #0984e3;
 }
 
 .system__wrap button {
   width: 25%;
-  border-left: 1px solid #0984e3;
+  border: 1px solid #0984e3;
 }
 
 .system__wrap .sys_active {
@@ -10228,7 +10253,9 @@ border-radius: 2px;
 
 .select__option button {
   width: 26%;
+  height: 30px;
   margin: 5px;
+  font-size: 13px;
   border: 1px solid #0984e3;
 }
 
@@ -10260,15 +10287,22 @@ border-radius: 2px;
 
 .button__column .search__btn {
   width: 65%;
+  height: 50px;
   margin: 0px 10px;
+  border: none;
+  background-color: #525252;
+  color: white;
+  font-size: 14px;
 }
 
 .button__column .reset__btn {
   width: 30%;
+  height: 50px;
   margin: 0px 10px;
   border: 1px solid #636e72;
   background-color: white;
   color: black;
+  font-size: 14px;
 }
 
 .slider__value {
@@ -10396,3 +10430,372 @@ border-radius: 2px;
     width: 100%;
   }
 }
+
+/* SearchOffice.js End */
+
+
+
+/* SignUp.js */
+/* SignUpPresenter1.js */
+
+#wrapper {
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 50px 10px;
+}
+
+.register {
+  width: 100%;
+  margin: 1vh 1vw;
+  display: flex;
+}
+
+.register form {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+#fregister p {
+  position: relative;
+  text-align: center;
+  color: #fff;
+  height: 50px;
+  line-height: 50px;
+  font-size: 1.1em;
+  background: #f2838f;
+  margin: 0 0 10px;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+#fregister p i {
+  font-size: 1.2em;
+  vertical-align: middle;
+}
+
+#fregister section {
+  margin: 10px auto 15px;
+  border: 1px solid #dde7e9;
+  position: relative;
+  border-radius: 3px;
+}
+
+#fregister h2 {
+  text-align: left;
+  padding: 20px;
+  border-bottom: 1px solid #dde7e9;
+  font-size: 1.2em;
+}
+
+#fregister textarea {
+  display: block;
+  padding: 20px;
+  width: 100%;
+  height: 150px;
+  background: #fff;
+  border: 0;
+  line-height: 1.6em;
+}
+
+#fregister input[type="radio"], input[type="checkbox"] {
+  box-sizing: border-box;
+  padding: 0;
+}
+
+.selec_chk {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  opacity: 0;
+  outline: 0;
+  z-index: -1;
+  overflow: hidden;
+}
+
+#fregister fieldset {
+  min-width: 0;
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+
+.fregister_agree {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.fregister_agree input[type="checkbox"] + label {
+  color: #676e70;
+}
+
+#fregister label {
+  display: inline-block;
+  margin-bottom: 0.5rem;
+  vertical-align: middle;
+  font-size: 1em;
+}
+
+.fregister_agree input[type="checkbox"] + label span {
+  position: absolute;
+  top: 20px;
+  right: 15px;
+  width: 17px;
+  height: 17px;
+  display: block;
+  background: #fff;
+  border: 1px solid #d0d4df;
+  border-radius: 3px;
+}
+
+.msg_sound_only, .sound_only {
+  display: inline-block !important;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  margin: 0 !important;
+  padding: 0 !important;
+  font-size: 0;
+  line-height: 0;
+  border: 0 !important;
+  overflow: hidden !important;
+}
+
+#fregister_private div {
+  padding: 20px;
+  background: #fff;
+}
+
+#fregister_private table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+#fregister_private table caption {
+  position: absolute;
+  font-size: 0;
+  line-height: 0;
+  overflow: hidden;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  color: #6c757d;
+  text-align: left;
+  caption-side: top;
+}
+
+#fregister_private table th {
+  background: #f7f7f9;
+  width: 33.33%;
+  color: #000;
+  padding: 10px;
+  border: 1px solid #d8dbdf;
+}
+
+#fregister_private table td {
+  border: 1px solid #e7e9ec;
+  padding: 10px;
+  border-top: 0;
+}
+
+#fregister_chkall {
+  position: relative;
+  text-align: center;
+  background: #f5f7fa;
+  line-height: 50px;
+  border: 1px solid #e5e9f0;
+  border-radius: 3px;
+  margin-bottom: 15px;
+}
+
+.register .btn_confirm {
+  text-align: left;
+}
+
+.register .btn_confirm .btn_submit {
+  margin-left: 1%;
+}
+
+.register .btn_confirm .btn_submit, .register .btn_confirm .btn_close {
+  float: left;
+  height: 50px !important;
+  width: 49.5%;
+  font-weight: bold;
+  font-size: 1.083em;
+}
+
+.btn_confirm a.btn_close {
+  text-align: center;
+  line-height: 50px;
+}
+
+.btn_close {
+  border: 1px solid #dcdcdc;
+  cursor: pointer;
+  border-radius: 3px;
+  background: #fff;
+}
+
+.btn_submit {
+  border: 0;
+  background: #3a8afd;
+  color: #fff;
+  cursor: pointer;
+  border-radius: 3px;
+}
+
+.fregister_agree input[type="checkbox"]:checked + label span {
+  background: url("/images/chk.png") no-repeat 50% 50% #3a8afd;
+  border-color: #1471f6;
+  border-radius: 3px;
+}
+/* SignUpPresenter1.js END */
+
+/* SignUpPresenter2.js */
+#register_form {
+  background: #fff;
+  margin-bottom: 20px;
+}
+
+#register_form ul {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  margin: 0;
+  list-style: none;
+}
+
+#register_form li {
+  display: list-item;
+  text-align: -webkit-match-parent;
+}
+
+#register_form label {
+  vertical-align: middle;
+  font-size: 1em;
+}
+
+#register_form h2 {
+  line-height: 25px;
+  color: #000000;
+  font-weight: 400;
+}
+
+#fregisterform .form_01 div {
+  margin: 0 0 20px;
+}
+
+.register_form_inner {
+  display: block;
+  background: #f7f7f7;
+  border: 1px solid #dde7e9;
+  border-radius: 3px;
+}
+
+#register_form h2 {
+  padding: 20px;
+  border-bottom: 1px solid #dde7e9;
+}
+
+.form_01 h2 {
+  font-size: 1.167em;
+}
+
+.register_form_inner ul {
+  padding: 20px;
+}
+
+.form_01 li {
+  margin-bottom: 10px;
+}
+
+.register_form_inner label {
+  display: block;
+  margin-bottom: 10px;
+  line-height: 24px;
+}
+
+.msg_sound_only, .sound_only {
+  display: inline-block !important;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  margin: 0 !important;
+  padding: 0 !important;
+  font-size: 0;
+  line-height: 0;
+  border: 0 !important;
+  overflow: hidden !important;
+}
+
+.tooltip_icon {
+  display: inline-block;
+  vertical-align: baseline;
+  color: #b3b5b8;
+  border: 0;
+  font-size: 1.4em;
+  background: transparent;
+  cursor: pointer;
+}
+
+.required, textarea.required {
+  background-repeat: no-repeat !important;
+  background-position: right top !important;
+}
+
+.full_input {
+  width: 100%;
+}
+
+.frm_input {
+  height: 40px;
+}
+
+.frm_input {
+  border: 1px solid #d0d3db;
+  background: #fff;
+  color: #000;
+  vertical-align: middle;
+  border-radius: 3px;
+  padding: 5px;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+}
+
+.chk_box {
+  position: relative;
+}
+
+.chk_box input[type="checkbox"] + label {
+  position: relative;
+  color: #676e70;
+}
+
+.chk_box input[type="checkbox"] + label span {
+  float: left;
+  width: 15px;
+  height: 15px;
+  display: block;
+  background: #fff;
+  border: 1px solid #d0d4df;
+  border-radius: 3px;
+}
+
+.register_form_inner input[type="checkbox"]:checked + label span {
+  background: url("/images/chk.png") no-repeat 50% 50% #3a8afd;
+  border-color: #1471f6;
+  border-radius: 3px;
+}
+
+.chk_li {
+  margin-left: 10px;
+}
+
+/* SignUpPresenter2.js END */
+/* SignUp.js End */

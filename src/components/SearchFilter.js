@@ -3,14 +3,19 @@ import Slider from "@material-ui/core/Slider";
 
 const filter_list = {
   system: [
-    "전체", "월세", "1일", "프리패스"
+    { value: "", text: "전체"},
+    { value: "002", text: "월세"},
+    { value: "001", text: "1일"},
+    { value: "003", text: "프리패스"},
   ],
   option: [
     "전자레인지", "냉장고", "도어락", "에어컨", "내부 화장실", "외부 화장실", "커피 머신", "프린터", "FAX"
   ]
 };
 
-const SearchFilter = ({ filter, handleChange, setFilter }) => {
+const SearchFilter = ({ 
+  filter, handleChange, setFilter, valueTranslation
+}) => {
   const marks = [
     {
       value: 0,
@@ -21,19 +26,46 @@ const SearchFilter = ({ filter, handleChange, setFilter }) => {
       label: '무제한'
     },
   ]
-  const markValueHandler = (value) => {
+
+  const switchValue = (property, value) => {
+    switch (property) {
+      case "deposit": {
+        if (value >= 10000) {
+          return `${(value / 10000).toFixed(0)}억 ${value % 10000}만원`;
+        }
+        return `${value}만원`;
+      }
+      case "monthly": {
+        return `${value}만원`;
+      }
+      case "count": {
+        return `${value}명`;
+      }
+      default: break;
+    }
+  }
+
+  const markValueHandler = (property, value) => {
     const [min, max] = value;
     if (min === 0) {
       if (max === 100) {
         return "무제한"
       } else {
-        return `${max}이하`;
+        return `${
+          switchValue(property, valueTranslation(property, max))
+        } 이하`;
       }
     } else {
       if (max === 100) {
-        return `${min}이상 ~ 무제한`;
+        return `${
+          switchValue(property, valueTranslation(property, min))
+        } 이상 ~ 무제한`;
       } else {
-        return `${min}이상 ~ ${max}이하`;
+        return `${
+          switchValue(property, valueTranslation(property, min))
+        } 이상 ~ ${
+          switchValue(property, valueTranslation(property, max))
+        } 이하`;
       }
     }
   }
@@ -47,15 +79,15 @@ const SearchFilter = ({ filter, handleChange, setFilter }) => {
             <button
               key={index}
               className={
-                filter.system === value ?
+                filter.system === value.value ?
                 "sys_active" : "sys_non_active"
               }
               onClick={()=>setFilter({
                 ...filter,
-                system: value
+                system: value.value
               })}
             >
-              {value}
+              {value.text}
             </button>
           ))}
         </div>
@@ -64,7 +96,7 @@ const SearchFilter = ({ filter, handleChange, setFilter }) => {
         <div className="price__row">
           <div className="filter__title">
             <div>보증금</div>
-            <div className="slider__value">{markValueHandler(filter.deposit)}</div>
+            <div className="slider__value">{markValueHandler("deposit", filter.deposit)}</div>
           </div>
           <Slider 
             value={filter.deposit}
@@ -76,7 +108,7 @@ const SearchFilter = ({ filter, handleChange, setFilter }) => {
         <div className="price__row">
           <div className="filter__title">
             <div>월세</div>
-            <div className="slider__value">{markValueHandler(filter.monthly)}</div>
+            <div className="slider__value">{markValueHandler("monthly", filter.monthly)}</div>
           </div>
           <Slider 
             value={filter.monthly}
@@ -88,7 +120,7 @@ const SearchFilter = ({ filter, handleChange, setFilter }) => {
         <div className="price__row">
           <div className="filter__title">
             <div>좌석수</div>
-            <div className="slider__value">{markValueHandler(filter.count)}</div>
+            <div className="slider__value">{markValueHandler("count", filter.count)}</div>
           </div>
           <Slider 
             value={filter.count}

@@ -9,8 +9,9 @@ import { BsFillFunnelFill } from "react-icons/bs";
 import OfficeCard from "../src/components/OfficeCard";
 import SearchFilter from "../src/components/SearchFilter";
 import Map from "../src/components/Map";
+import { filtering } from "../src/utils/filltering";
 
-const system = {
+const SYSTEM_LIST = {
   "001": "1일",
   "002": "월세",
   "003": "프리패스",
@@ -22,7 +23,7 @@ const SearchOffice = () => {
   const [isClick, setIsClick] = useState(false);
   const [isFilter, setIsFilter] = useState(false);
   const [filter, setFilter] = useState({
-    system: "전체",
+    system: "",
     order: "최근 등록순",
     deposit: [0, 100],
     monthly: [0, 100],
@@ -32,7 +33,7 @@ const SearchOffice = () => {
 
   useEffect(() => {
     getList();
-  }, []);
+  }, [filter]);
 
   const handleChange = (property, newValue) => {
     setFilter({
@@ -57,7 +58,16 @@ const SearchOffice = () => {
 
     const { data: list } = await postData(form);
     console.log(list);
-    setOfficeList(list);
+    setOfficeList(filtering(list, filter));
+  }
+
+  const fixSliderValue = (property, value) => {
+    switch (property) {
+      case "deposit": return value * 500;
+      case "monthly": return value * 50;
+      case "count": return value;
+      default: break;
+    }
   }
 
   const pageHandler = (event, id) => {
@@ -88,10 +98,10 @@ const SearchOffice = () => {
                   value={filter.system} 
                   onChange={event=>setFilter({...filter, system: event.target.value})}
                 >
-                  <option value="전체">전체</option>
-                  <option value="월세">월세</option>
-                  <option value="1일">1일</option>
-                  <option value="프리패스">프리패스</option>
+                  <option value="">전체</option>
+                  <option value="002">월세</option>
+                  <option value="001">1일</option>
+                  <option value="003">프리패스</option>
                 </select>
                 <select
                   value={filter.order} 
@@ -109,6 +119,7 @@ const SearchOffice = () => {
                   filter={filter}
                   setFilter={setFilter}
                   handleChange={handleChange}
+                  valueTranslation={fixSliderValue}
                 />
               )}
               <div className="list">

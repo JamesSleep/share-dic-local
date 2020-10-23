@@ -5,49 +5,46 @@ import { useRouter } from 'next/router'
 import { postData } from "../../api";
 import HeadSub from "./HeadSub";
 
-const Navigation = ({ children, loginCheck }) => {
+const Navigation = (props) => {
   const router = useRouter();
   const [isLogin, setIsLogin] = useState(false);
-  const ck_login = async () =>{
-    if(loginCheck == "on"){
-      const form = new FormData();
-      form.append("method", "proc_member_get_one");
-      form.append("mb_token", localStorage.token);
-      // JSON 데이터 저장
-      const {data:{result}} = await postData(form);
-      console.log(result);
-      if(result == "N"){
-          alert("로그인정보가 만료되었습니다.");
-          router.push("/");
-      }
+  const [headBoxClass, setHeadBoxClass] = useState("navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light");
+
+  const ck_login = () =>{
+    if(props.loginCheck == "on"){
+        const form = new FormData();
+        form.append("method", "proc_member_get_one");
+        form.append("mb_token", localStorage.token);
+        // JSON 데이터 저장
+        Axios.post(SITE_URL,form).then((res)=>{
+            const {data:{result}} = res;
+            if(result == "N"){
+                alert("로그인정보가 만료되었습니다.");
+                router.push("/Login");   
+            }
+        });
     }
   }
+
   useEffect(() => {
-    useCheckLogin();
+    ck_login();
+    if(localStorage.email != undefined){
+      setIsLogin(true);    
+    }
+    if(props.darkmode == "on"){
+        setHeadBoxClass("navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark");    
+    }
   },[]);
 
-  const useCheckLogin = () => {
-    if (localStorage.getItem("token")) {
-      setIsLogin(true);
-    } else {
-      setIsLogin(false);
-    }
-  }
-
-  const pagingHandler = event => {
-    //event.preventDefault();
-    if (isLogin) {
-      localStorage.clear();
-      document.location.href = "/";
-    } else {
-      router.push("/Login");
-    }
+  const LoginLogout = () => {
+    localStorage.clear();  
+    router.push("/Login");
   }
     
   return (
     <>
       <HeadSub />
-      <nav className="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+      <nav className={headBoxClass} id="ftco-navbar">
         <div className="container">
           <a className="navbar-brand" href="/"><img src="/images/logo.png" alt="쉐어딕" /></a>
           <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
@@ -55,14 +52,14 @@ const Navigation = ({ children, loginCheck }) => {
           </button>
           <div className="collapse navbar-collapse" id="ftco-nav">
             <ul className="navbar-nav ml-auto">
-              <li className="nav-item active"><a href="/SearchOffice" className="nav-link">사무실 찾기</a></li>
-              <li className="nav-item"><a href="/RegistOffice" className="nav-link">사무실 내놓기</a></li>
-              <li className="nav-item"><a href="/FreePass" className="nav-link">프리패스</a></li>
-              <li className="nav-item"><a href="/" className="nav-link">관심매물</a></li>
-              <li className="nav-item"><a href="/Notification" className="nav-link">알림</a></li>
-              <li className="nav-item"><a href="/Chatting" className="nav-link"><span>채팅</span></a></li>
+              <li className="nav-item active"><a onClick={()=>router.push("/SearchOffice")} className="nav-link">사무실 찾기</a></li>
+              <li className="nav-item"><a onClick={()=>router.push("/RegistOffice")}  className="nav-link">사무실 내놓기</a></li>
+              <li className="nav-item"><a onClick={()=>router.push("/FreePass")} className="nav-link">프리패스</a></li>
+              <li className="nav-item"><a onClick={()=>router.push("/")} className="nav-link">관심매물</a></li>
+              <li className="nav-item"><a onClick={()=>router.push("/Notification")} className="nav-link">알림</a></li>
+              <li className="nav-item"><a onClick={()=>router.push("/Chatting")}  className="nav-link"><span>채팅</span></a></li>
               <li className="nav-item cta">
-                <a href="#" onClick={pagingHandler} className="nav-link">
+                <a href="#" onClick={LoginLogout} className="nav-link">
                   <span>{isLogin ? "로그아웃" : "로그인"}</span>
                 </a>
               </li>
@@ -70,7 +67,7 @@ const Navigation = ({ children, loginCheck }) => {
           </div>
         </div>
       </nav>
-      {children}
+      {props.children}
       <footer className="ftco-footer ftco-bg-dark ftco-section">
         <div className="container">
           <div className="row mb-5">

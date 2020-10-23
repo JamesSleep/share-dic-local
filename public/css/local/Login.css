@@ -1,22 +1,3 @@
-.login__container {
-  background-image: url("/images/login_bg.jpg"); 
-  height: 1080px; 
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center center;
-}
-
-.join__title h3 {
-  display: inline-block; 
-  margin-right: 20px; 
-  font-weight: 300;
-}
-
-.txt_id {
-  font-size: 12px;
-}
-
-
 /* ### 기본 스타일 커스터마이징 시작 ### */
 
 /* 버튼 */
@@ -714,3 +695,18 @@ box-sizing:content-box;
 
 /* Mobile화면으로 */
 #device_change {display:block;margin:0.3em;padding:0.5em 0;border:1px solid #eee;border-radius:2em;background:#fff;color:#000;font-size:2em;text-decoration:none;text-align:center}
+
+
+
+.login_header img {
+  width: auto;
+  overflow: hidden;
+}
+
+.login__container {
+  background-image: url("/images/login_bg.jpg"); 
+  height: 1080px; 
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+}

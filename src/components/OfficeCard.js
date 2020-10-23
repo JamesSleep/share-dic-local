@@ -22,7 +22,7 @@ const OfficeCard = ({office}) => {
     return result;
   }
   return (
-    <a key={office.of_idx} href="#" className="office__card">
+    <a href={`/OfficeDetail?id=${office.of_idx}`} className="office__card">
       <img src={`https://softer052.cafe24.com/data/img/${office.of_img}`} />
       <div className="middle__text">
         {office.of_member_want}인 좌석 수용인원 {office.of_member_all}명
